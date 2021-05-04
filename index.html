@@ -5,7 +5,18 @@
   
   </style>
   <body>
-    <p> hello world attempt number two!</p>
+    <p id = "the_parargaph"> hello world attempt number two!</p>
+    
+     <button onclick="change_paragraph()">Click me!</button>
+    
+    
+    <script>
+      function change_paragraph() {
+
+    document.getElementById("the_paragraph").innerHTML = "the paragraph changed because you pressed the button yay!";
+}
+
+    </script>
   </body>
   
 </html>
