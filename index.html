@@ -1,33 +1,190 @@
+<!DOCTYPE html>
 <html>
-  
-  <style>
-  body {background-color: rgb(153,100,204);}
-    #cat{
-    height: 500px;
-            width: 500px;
-    }
-  </style>
-  <body>
-    
-    <audio id="myaudio">   
-    
-    </audio>
-    <p id = "the_paragraph"> hello world attempt number two!</p>
-    
-     <button onclick="change_paragraph()">Click me!</button>
-    <img id="cat" src="ball.jpg">
-     
-    <script>
-      function change_paragraph() {
+      <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content= "width=device-width, initial-scale=1.0"> 
+        <title>Flashcards- Rooms of House </title>
+        <style>
+            
+        body {background-color: rgb(255, 230, 230);}
 
-    document.getElementById("the_paragraph").innerHTML = "the paragraph changed because you pressed the button yay!";
-        x = document.getElementById("myaudio");
-    x.src = "bowl.MP3";
-    x.play();
+        #div_with_button_one {
+          
+          background-color: rgb(255, 235, 230);
+          height: 100px;
+          width:100%;
+          
+          
+
+
+        }
+
+
+        #div_with_button_two {
+          
+          background-color: rgb(255, 240, 230);
+          height: 100px;
+          width:100%;
+
+
+        }
+        #image_of_object {
+          
+          background-color: rgb(145, 134, 30);
+          height: 350px;
+
+          width: 700px;
+          
+          
+
+        }
+
+        #button_one {
+              
+            
+            background-color:rgb(235, 130, 123);
+            height: 100%;
+            width: 150px;
+            
+
+        }
+
+
+        #button_two {
+            
+            background-color:rgb(90, 191, 204);
+            
+            height: 100%;
+            width: 150px;
+
+        }
         
+        span{
+          position: relative;
+          font-size: 30px;
+          left: 100px;
+          right: 100px;
+
+
+
+        }
+
+            
+
+      
+        </style>    
+      </head>
+    <body>
+
+      <audio id="myAudio">
+
+      </audio>
+
+      <img id ="image_of_object" src="kitchen.jpg">
+        
+
+      
+      <div id = "div_with_button_one">
+
+        
+           <button id="button_one" onclick="display_question()">Pose-moi une question</button>
+        
+           
+           <span id ="paragraph_containing_question"> Qu'est-ce que c'est? </span>
+        
+
+      </div>
+
+      <div id="div_with_button_two">
+
+          <button id="button_two" onclick="display_answer()">Montre-moi la r&#233;ponse</button>
+          
+
+          <span id="paragraph_containing_name_of_object"> ? </span>
+
+
+
+      </div>
+
+
+
+  
+  
+      
+      <script>
+         class object_to_display {
+    constructor(html_name, jpg_image, audioclip) {
+    this.html_name = html_name;
+    this.jpg_image = jpg_image;
+    
+    this.audioclip = audioclip;
+  
+    }
+
+
+  }
+
+  let bedroom =new object_to_display("C'est une chambre", "bedroom.jpg", "bedroom_cest.MP3");
+  let basement =new object_to_display("C'est un sous-sol", "basement.jpg", "basement_cest.MP3");
+  let kitchen =new object_to_display("C'est une cuisine", "kitchen.jpg", "kitchen_cest.MP3");
+  let dining_room =new object_to_display("C'est une salle a manger", "dining_room.jpg", "dining_room_cest.MP3");
+  let bathroom =new object_to_display("C'est une salle de bain", "bathroom.jpg", "bathroom_cest.MP3");
+  let living_room =new object_to_display("C'est un salon", "living_room.jpg", "living_room_cest.MP3");
+
+
+  var objects_to_display_array= [];
+
+  objects_to_display_array.push(bedroom);
+  objects_to_display_array.push(basement);
+  objects_to_display_array.push(kitchen);
+  objects_to_display_array.push(dining_room);
+  objects_to_display_array.push(bathroom);
+  objects_to_display_array.push(living_room);
+
+  var object_randomly_selected;
+
+  function display_question() {
+    document.getElementById("paragraph_containing_name_of_object").innerHTML = "?";
+    var random_number = Math.floor(Math.random() * objects_to_display_array.length); 
+    
+    if ( object_randomly_selected == objects_to_display_array[random_number] && random_number == objects_to_display_array.length-1 ) {
+
+     random_number = random_number - 1;
+
+    }
+    else if (object_randomly_selected == objects_to_display_array[random_number] ){
+
+          random_number = random_number + 1;
+
+      }
+   
+
+     console.log(objects_to_display_array.length);
+
+     console.log(random_number);
+
+    object_randomly_selected = objects_to_display_array[random_number];
+
+    
+    
+
+    document.getElementById("image_of_object").src = object_randomly_selected.jpg_image;
+    x = document.getElementById("myAudio");
+    x.src = "quest_que_cest.MP3"
+    x.play();
+
+  }
+
+function display_answer() {
+
+    document.getElementById("paragraph_containing_name_of_object").innerHTML = object_randomly_selected.html_name;
+    x = document.getElementById("myAudio");
+    x.src = object_randomly_selected.audioclip;
+    x.play();
 }
 
-    </script>
-  </body>
-  
+
+      </script>
+
+    </body>
 </html>
