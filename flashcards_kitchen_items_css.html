@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+      <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content= "width=device-width, initial-scale=1.0"> 
+        <title>Flashcards- Rooms of House </title>
+        <style>
+            
+        body {background-color: rgb(255, 230, 230);}
+
+        #div_with_button_one {
+          
+          background-color: rgb(255, 235, 230);
+          height: 100px;
+          width:100%;
+          
+          
+
+
+        }
+
+
+        #div_with_button_two {
+          
+          background-color: rgb(255, 240, 230);
+          height: 100px;
+          width:100%;
+
+
+        }
+        #image_of_object {
+          
+          background-color: rgb(145, 134, 30);
+          height: 350px;
+
+          width: 700px;
+          
+          
+
+        }
+
+        #button_one {
+              
+            
+            background-color:rgb(235, 130, 123);
+            height: 100%;
+            width: 150px;
+            
+
+        }
+
+
+        #button_two {
+            
+            background-color:rgb(90, 191, 204);
+            
+            height: 100%;
+            width: 150px;
+
+        }
+        
+        span{
+          position: relative;
+          font-size: 30px;
+          left: 100px;
+          right: 100px;
+
+
+
+        }
+
+            
+
+      
+        </style>    
+      </head>
+    <body>
+
+      <audio id="myAudio">
+
+      </audio>
+
+      <div id = "links">
+
+        <a href="flash_cards_rooms_of_house_css.html">Visit rooms of house flashcards</a>
+        <a href="flashcards_kitchen_items_css.html">Visit kitchen items flashcards</a>
+        <a href="flash_cards_bed_items_css.html">Visit bed items flashcards</a>
+      </div>
+
+      <img id ="image_of_object" src="spoon.jpg">
+        
+
+      
+      <div id = "div_with_button_one">
+
+        
+           <button id="button_one" onclick="display_question()">Pose-moi une question</button>
+        
+           
+           <span id ="paragraph_containing_question"> Qu'est-ce que c'est? </span>
+        
+
+      </div>
+
+      <div id="div_with_button_two">
+
+          <button id="button_two" onclick="display_answer()">Montre-moi la r&#233;ponse</button>
+          
+
+          <span id="paragraph_containing_name_of_object"> ? </span>
+
+
+
+      </div>
+
+
+
+  
+  
+      
+      <script>
+         class object_to_display {
+    constructor(html_name, jpg_image, audioclip) {
+    this.html_name = html_name;
+    this.jpg_image = jpg_image;
+    
+    this.audioclip = audioclip;
+  
+    }
+
+
+  }
+
+ let fridge =new object_to_display("C'est un refrigerateur", "fridge.jpg", "fridge_cest.MP3");
+  let spoon =new object_to_display("C'est une cuillere", "spoon.jpg", "spoon_cest.MP3");
+  let oven =new object_to_display("C'est un four", "oven.jpg", "oven_cest.MP3");
+  let fork =new object_to_display("C'est une fourchette", "fork.jpg", "fork_cest.MP3");
+  
+
+  var objects_to_display_array= [];
+
+  objects_to_display_array.push(fridge);
+  objects_to_display_array.push(spoon);
+  objects_to_display_array.push(oven);
+  objects_to_display_array.push(fork);
+
+  var object_randomly_selected = spoon;
+
+  function display_question() {
+    document.getElementById("paragraph_containing_name_of_object").innerHTML = "?";
+    var random_number = Math.floor(Math.random() * objects_to_display_array.length); 
+    
+    if ( object_randomly_selected == objects_to_display_array[random_number] && random_number == objects_to_display_array.length-1 ) {
+
+     random_number = random_number - 1;
+
+    }
+    else if (object_randomly_selected == objects_to_display_array[random_number] ){
+
+          random_number = random_number + 1;
+
+      }
+   
+
+     console.log(objects_to_display_array.length);
+
+     console.log(random_number);
+
+    object_randomly_selected = objects_to_display_array[random_number];
+
+    
+    
+
+    document.getElementById("image_of_object").src = object_randomly_selected.jpg_image;
+    x = document.getElementById("myAudio");
+    x.src = "quest_que_cest.MP3"
+    x.play();
+
+  }
+
+function display_answer() {
+
+    document.getElementById("paragraph_containing_name_of_object").innerHTML = object_randomly_selected.html_name;
+    x = document.getElementById("myAudio");
+    x.src = object_randomly_selected.audioclip;
+    x.play();
+}
+
+
+      </script>
+
+    </body>
+</html>
